@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Task</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+<div class="container p-5">
+<div class="card mt-5">
+<div class="card-body">
+    
+    <h2>Login Here!</h2>
+
+        <form id="myForm" action="https://app.nextel.io/webhook/insert/0aa1883c6411f7873cb83dacb17b0afc">
+            <div class="form-group">
+            <label for="phone">Name</label>
+            <input type="text" class="form-control" value="Alex" id="name" placeholder="Name" >
+            </div>
+            
+            <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" class="form-control" value="1234567890" id="phone" placeholder="Phone" maxlength="10" required>
+            </div>
+            
+            <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" value="abc@gmail.com" id="email" placeholder="Email" required>
+            </div>
+            
+            <button id="postSubmit" class="btn text-white py-2 px-5 " onclick="this.parentNode.submit();" type= "submit" value="Send Me!">submit</button>
+        </form>
+
+</div>
+</div>
+
+</div>
+
+<script>
+    const thisForm = document.getElementById('myForm');
+        thisForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        let response = await fetch('https://app.nextel.io/webhook/insert/0aa1883c6411f7873cb83dacb17b0afc', {
+        method: 'POST',
+        body: new FormData(thisForm)
+    });
+    
+    let result = await response.json();
+    // alert(result.message)
+    console.log(result)
+    });
+    </script>
+
+</body>
+</html>
